@@ -48,11 +48,12 @@ const questions = [
   
   let currentQuestionIndex = 0;
   let score = 0;
+  let selectedAnswer = null;
   
   const questionContainer = document.getElementById("question-container")
   const questionElement = document.getElementById("question");
   const answerButtonsElement = document.getElementById("answer-buttons");
-  const nextButton = document.getElementById("next-btn");
+  const submitButton = document.getElementById("submit-btn");
   const progressElement = document.getElementById("progress");
   const resultsContainer = document.getElementById("results-container");
   const finalScoreElement = document.getElementById("final-score");
@@ -61,7 +62,8 @@ const questions = [
   function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-    nextButton.innerHTML = "Next";
+    selectedAnswer = null;
+    submitButton.innerHTML = "Submit";
     showQuestion();
   }
   
@@ -76,37 +78,42 @@ const questions = [
       button.innerHTML = answer.text;
       button.classList.add("btn");
       answerButtonsElement.appendChild(button);
-      if (answer.correct) {
-        button.dataset.correct = answer.correct;
-      }
-      button.addEventListener("click", selectAnswer);
+      button.addEventListener("click", () => selectAnswer(button,answer.correct));
     });
   }
   
   function resetState() {
-    nextButton.style.display = "none";
+    submitButton.style.display = "none";
     while (answerButtonsElement.firstChild) {
       answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
   }
   
-  function selectAnswer(e) {
-    const selectedButton = e.target;
-    const isCorrect = selectedButton.dataset.correct === "true";
-    if (isCorrect) {
+  function selectAnswer(button, isCorrect) {
+    // Deselect all buttons
+    Array.from(answerButtonsElement.children).forEach(btn => {
+      btn.classList.remove("selected");
+    });
+    // Select the clicked button
+    button.classList.add("selected");
+    selectedAnswer = isCorrect; // Store the selected answer's correctness
+    submitButton.style.display = "block"; // Show the Submit button
+  }
+
+  function handleSubmit() {
+    if (selectedAnswer === null) return; // No answer selected
+  
+    // Update score if the answer is correct
+    if (selectedAnswer) {
       score++;
     }
-    Array.from(answerButtonsElement.children).forEach(button => {
-      setStatusClass(button, button.dataset.correct === "true");
-    });
-    nextButton.style.display = "block";
-  }
   
-  function setStatusClass(element, correct) {
-    if (correct) {
-      element.style.backgroundColor = "green";
+    // Move to the next question or show results
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion();
     } else {
-      element.style.backgroundColor = "red";
+      showResults();
     }
   }
   
@@ -118,20 +125,7 @@ const questions = [
     restartButton.classList.remove("hidden");
   }
   
-  function handleNextButton() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-      showQuestion();
-    } else {
-      showResults();
-    }
-  }
-  
-  nextButton.addEventListener("click", () => {
-    if (currentQuestionIndex < questions.length) {
-      handleNextButton();
-    }
-  });
+  submitButton.addEventListener("click", handleSubmit);
   
   restartButton.addEventListener("click", () => {
     resultsContainer.classList.add("hidden");

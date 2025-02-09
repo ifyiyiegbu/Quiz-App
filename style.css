@@ -47,7 +47,7 @@ body {
   }
   
   .btn {
-    background: #007bff;
+    background: #0b7af0;
     color: white;
     border: none;
     padding: 10px;
@@ -58,13 +58,19 @@ body {
   .btn:hover {
     background: #0056b3;
   }
+
+  .btn.selected {
+    background-color: #00ff2a;
+    color: white;
+  }
   
   .hidden {
     display: none;
   }
   
-  #next-btn {
+  #submit-btn {
     width: 100%;
+    background-color: #fc4444;
   }
 
   #restart-btn{
