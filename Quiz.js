@@ -90,25 +90,20 @@ const questions = [
   }
   
   function selectAnswer(button, isCorrect) {
-    // Deselect all buttons
     Array.from(answerButtonsElement.children).forEach(btn => {
       btn.classList.remove("selected");
     });
-    // Select the clicked button
     button.classList.add("selected");
-    selectedAnswer = isCorrect; // Store the selected answer's correctness
-    submitButton.style.display = "block"; // Show the Submit button
+    selectedAnswer = isCorrect; 
+    submitButton.style.display = "block";
   }
 
   function handleSubmit() {
-    if (selectedAnswer === null) return; // No answer selected
-  
-    // Update score if the answer is correct
+    if (selectedAnswer === null) return;
     if (selectedAnswer) {
       score++;
     }
   
-    // Move to the next question or show results
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
       showQuestion();
