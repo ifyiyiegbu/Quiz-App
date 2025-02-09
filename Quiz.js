@@ -9,12 +9,12 @@ const questions = [
       ]
     },
     {
-      question: "What is the capital of France?",
+      question: "What is the capital of Canada??",
       answers: [
-        { text: "Paris", correct: true },
-        { text: "London", correct: false },
-        { text: "Berlin", correct: false },
-        { text: "Madrid", correct: false }
+        { text: "Ottawa", correct: true },
+        { text: "Vancouver", correct: false },
+        { text: "Toronto", correct: false },
+        { text: "Montreal", correct: false }
       ]
     },
     {
