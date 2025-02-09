@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -5,8 +7,8 @@
 }
 
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Kanit',serif;
+    background-color: yellowgreen;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,29 +18,33 @@ body {
   }
   
   .quiz-container {
-    background: white;
+    display: flex;
+    flex-direction: column;
+    background: #020202;
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 400px;
+    border-radius: 25px;
+    width: 30vw;
+    max-height: 80vh;
     text-align: center;
+    color: #f4f4f4;
   }
 
   h1{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-style: italic;
     font-size: 40px;
-    font-weight: 900;
+    font-weight: 700;
     margin-bottom: 15px;
   }
   
   #progress{
+    display: flex;
+    justify-items: flex-start;
+    font-size: 15px;
     margin-bottom: 10px;
   }
 
   #question{
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 24px;
   }
   .btn-grid {
     display: grid;
@@ -47,8 +53,9 @@ body {
   }
   
   .btn {
-    background: #0b7af0;
+    background: #00CAF2;
     color: white;
+    font-size: 20px;
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -56,11 +63,12 @@ body {
   }
   
   .btn:hover {
-    background: #0056b3;
+    background: #3248DA;
+    color: #47CC49;
   }
 
   .btn.selected {
-    background-color: #00ff2a;
+    background-color: #47CC49;
     color: white;
   }
   
@@ -70,10 +78,12 @@ body {
   
   #submit-btn {
     width: 100%;
-    background-color: #fc4444;
+    background-color: #FF7040;
+    color: #f4f4f4;
   }
 
   #restart-btn{
     margin-top: 20px;
-    width: 30em;
+    width: 30vw;
+    border-radius: 50px;
   }
